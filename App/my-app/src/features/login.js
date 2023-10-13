@@ -28,14 +28,21 @@ const login = () => {
 
         <Modal isVisible={isModalVisible}>
         <View style={styles.modalContainer}>
-          <Text>FPT Polytechnic HO</Text>
-          <Text>FPT Polytechnic Hà Nội</Text>
-          <Text>FPT Polytechnic Hồ Chí Minh</Text>
-          <Text>FPT Polytechnic Đà Nẵng</Text>
-          <Text>FPT Polytechnic Cần Thơ</Text>
-          <Text>FPT Polytechnic Tây Nguyên</Text>
-          <Text>FPT Polytechnic Hải Phòng</Text>
-         <TouchableOpacity style={styles.btnConfirm}>
+          <Text style={styles.txtCS}>FPT Polytechnic HO</Text>
+          <View style={styles.line}></View>
+          <Text style={styles.txtCS2}>FPT Polytechnic Hà Nội</Text>
+          <View style={styles.line}></View>
+          <Text style={styles.txtCS3}>FPT Polytechnic Hồ Chí Minh</Text>
+          <View style={styles.line}></View>
+          <Text style={styles.txtCS4}>FPT Polytechnic Đà Nẵng</Text>
+          <View style={styles.line}></View>
+          <Text style={styles.txtCS5}>FPT Polytechnic Cần Thơ</Text>
+          <View style={styles.line}></View>
+          <Text style={styles.txtCS6}>FPT Polytechnic Tây Nguyên</Text>
+          <View style={styles.line}></View>
+          <Text style={styles.txtCS7}>FPT Polytechnic Hải Phòng</Text>
+          <View style={styles.line}></View>
+         <TouchableOpacity style={styles.btnConfirm} onPress={toggleModal}>
           <Text style={styles.text3}>xác nhận</Text>
          </TouchableOpacity>
         </View>
@@ -120,8 +127,8 @@ const styles = StyleSheet.create({
     lineHeight: 24,
   },
   modalContainer: {
-    width:261,
-    height:350,
+    width:"80%",
+    height:"48%",
     borderRadius:12,
     borderRightWidth:1,
     borderRightColor:"#C8C8C8",
@@ -131,6 +138,8 @@ const styles = StyleSheet.create({
     alignSelf:"center",
     padding: 20,
     borderRadius: 10,
+    flexShrink:0,
+    alignItems:"center",
   },
   btnConfirm:{
     width:91,
@@ -146,5 +155,73 @@ const styles = StyleSheet.create({
     color:"#FFFFFF",
     fontSize:14,
     fontWeight:"700"
-  }
+  },
+  txtCS:{
+    color:"#000",
+    textAlign:"center",
+    fontSize:14,
+    fontWeight:"400",
+    lineHeight:24,
+    lineHeight:24,
+    marginTop:20
+  },
+  line:{
+    width:169,
+    height:0.5,
+    backgroundColor:"rgba(0, 0, 0, 0.20)",
+  },
+  txtCS2:{
+    color:"#000",
+    textAlign:"center",
+    fontSize:14,
+    fontWeight:"400",
+    lineHeight:24,
+    lineHeight:24,
+    marginTop:16
+  },
+  txtCS3:{
+    color:"#000",
+    textAlign:"center",
+    fontSize:14,
+    fontWeight:"400",
+    lineHeight:24,
+    lineHeight:24,
+    marginTop:16
+  },
+  txtCS4:{
+    color:"#000",
+    textAlign:"center",
+    fontSize:14,
+    fontWeight:"400",
+    lineHeight:24,
+    lineHeight:24,
+    marginTop:16
+  },
+  txtCS5:{
+    color:"#000",
+    textAlign:"center",
+    fontSize:14,
+    fontWeight:"400",
+    lineHeight:24,
+    lineHeight:24,
+    marginTop:16
+  },
+  txtCS6:{
+    color:"#000",
+    textAlign:"center",
+    fontSize:14,
+    fontWeight:"400",
+    lineHeight:24,
+    lineHeight:24,
+    marginTop:16
+  },
+  txtCS7:{
+    color:"#000",
+    textAlign:"center",
+    fontSize:14,
+    fontWeight:"400",
+    lineHeight:24,
+    lineHeight:24,
+    marginTop:16
+  },
 });

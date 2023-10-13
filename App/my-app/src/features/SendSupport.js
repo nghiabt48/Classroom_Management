@@ -10,14 +10,14 @@ import React, { useState } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useNavigation } from "@react-navigation/native";
 import Modal from "react-native-modal";
-const problem_report = () => {
+const SendSupport = () => {
   const [isModalVisible, setModalVisible] = useState(false);
   const navigation = useNavigation();
   const goBack = () => {
     navigation.goBack();
   };
 
-  //Hiển thị bảng chọn Bao Cao Su Co
+  //Hiển thị bảng chọn Ho Tro CNTT
   const toggleModal = () => {
     setModalVisible(!isModalVisible);
   };
@@ -30,7 +30,7 @@ const problem_report = () => {
             source={require("../images/back.png")}
           />
         </TouchableOpacity>
-        <Text style={styles.text1}>Báo cáo sự cố</Text>
+        <Text style={styles.text1}>Yêu cầu hỗ trợ CNTT</Text>
       </View>
       <TextInput
         style={styles.edtRoom}
@@ -41,35 +41,42 @@ const problem_report = () => {
       ></TextInput>
 
       <TouchableOpacity style={styles.edtProblem} onPress={toggleModal}>
-        <Text style={styles.text4}>Sự cố đang gặp phải </Text>
+        <Text style={styles.text4}>Sự cố CNTT</Text>
         <Image
           style={styles.btnDropdown}
           source={require("../images/dropdown.png")}
           onPress={toggleModal}
         />
       </TouchableOpacity>
+
       <Modal isVisible={isModalVisible}>
         <View style={styles.modalContainer}>
-          <TouchableOpacity style={styles.btnProblem}>
-            <Text style={styles.txtProblem}>Cơ sở vật chất</Text>
+          <TouchableOpacity style={styles.btnSup}>
+            <Text style={styles.txtSup}>
+              Hỗ trợ khai báo connet Wifi, update địa chỉ Mac
+            </Text>
           </TouchableOpacity>
-          <TouchableOpacity style={styles.btnProblem2}>
-            <Text style={styles.txtProblem}>Thiết bị mạng</Text>
+          <TouchableOpacity style={styles.btnSup2}>
+            <Text style={styles.txtSup}>Tài khoản mail @FE,@FPT</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={styles.btnProblem3}>
-            <Text style={styles.txtProblem}>Vệ sinh phòng học</Text>
+          <TouchableOpacity style={styles.btnSup3}>
+            <Text style={styles.txtSup}>Hỗ trợ AP ,LMS</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={styles.btnProblem4}>
-            <Text style={styles.txtProblem}>Góp ý phòng học</Text>
+          <TouchableOpacity style={styles.btnSup4}>
+            <Text style={styles.txtSup}>Hỗ trợ kết nối TIVI</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={styles.btnProblem5}>
-            <Text style={styles.txtProblem}>Sự cố khác</Text>
+          <TouchableOpacity style={styles.btnSup5}>
+            <Text style={styles.txtSup}>Hỗ trợ máy in,photo</Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.btnSup6}>
+            <Text style={styles.txtSup}>Sự cố khác</Text>
           </TouchableOpacity>
           <TouchableOpacity style={styles.btnConfirm} onPress={toggleModal}>
-          <Text style={styles.text3}>xác nhận</Text>
-         </TouchableOpacity>
+            <Text style={styles.text3}>xác nhận</Text>
+          </TouchableOpacity>
         </View>
       </Modal>
+
       <TextInput
         style={styles.edtDescription}
         placeholder="Mô tả sự cố"
@@ -92,7 +99,7 @@ const problem_report = () => {
   );
 };
 
-export default problem_report;
+export default SendSupport;
 
 const styles = StyleSheet.create({
   container: {
@@ -107,12 +114,12 @@ const styles = StyleSheet.create({
     width: 24,
     height: 24,
     marginStart: 24,
-    marginTop: 5,
+    marginTop: 3,
   },
   text1: {
-    marginStart: 70,
+    marginStart: 80,
     color: "rgba(0, 0, 0, 0.87)",
-    fontSize: 24,
+    fontSize: 18,
     fontWeight: "700",
   },
   edtRoom: {
@@ -142,16 +149,6 @@ const styles = StyleSheet.create({
     borderColor: "rgba(0, 0, 0, 0.10)",
     borderWidth: 0.5,
     padding: 11,
-    fontSize: 14,
-    fontWeight: "400",
-  },
-  text3: {
-    color: "rgba(0, 0, 0, 0.32)",
-    fontSize: 14,
-    fontWeight: "400",
-  },
-  text4: {
-    color: "rgba(0, 0, 0, 0.32)",
     fontSize: 14,
     fontWeight: "400",
   },
@@ -250,7 +247,12 @@ const styles = StyleSheet.create({
     fontSize: 14,
     fontWeight: "700",
   },
-  btnProblem: {
+  text4: {
+    color: "rgba(0, 0, 0, 0.32)",
+    fontSize: 14,
+    fontWeight: "400",
+  },
+  btnSup: {
     width: 329,
     height: 40,
     backgroundColor: "#fff",
@@ -258,45 +260,49 @@ const styles = StyleSheet.create({
     flexShrink: 0,
     padding: 10,
   },
-  btnProblem2: {
+  btnSup2: {
     width: 329,
     height: 40,
+    backgroundColor: "#fff",
+    borderRadius: 12,
+    flexShrink: 0,
+    padding: 10,
     marginTop: 10,
-    backgroundColor: "#fff",
-    borderRadius: 12,
-    flexShrink: 0,
-    padding: 10,
   },
-  btnProblem3: {
+  btnSup3: {
     width: 329,
     height: 40,
-    marginTop: 10,
     backgroundColor: "#fff",
     borderRadius: 12,
     flexShrink: 0,
     padding: 10,
+    marginTop: 10,
   },
-  btnProblem4: {
+  btnSup4: {
     width: 329,
     height: 40,
-    marginTop: 10,
     backgroundColor: "#fff",
     borderRadius: 12,
     flexShrink: 0,
     padding: 10,
+    marginTop: 10,
   },
-  btnProblem5: {
+  btnSup5: {
     width: 329,
     height: 40,
-    marginTop: 10,
     backgroundColor: "#fff",
     borderRadius: 12,
     flexShrink: 0,
     padding: 10,
+    marginTop: 10,
   },
-  txtProblem:{
-    color:"rgba(0, 0, 0, 0.87)",
-    fontSize:14,
-    fontWeight:"400",
-  }
+  btnSup6: {
+    width: 329,
+    height: 40,
+    backgroundColor: "#fff",
+    borderRadius: 12,
+    flexShrink: 0,
+    padding: 10,
+    marginTop: 10,
+  },
 });

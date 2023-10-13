@@ -1,12 +1,15 @@
 import { StyleSheet, Text, View, Image, TouchableOpacity } from "react-native";
 import React from "react";
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation } from "@react-navigation/native";
 const home = () => {
-    const navigation = useNavigation();
+  const navigation = useNavigation();
 
-    const goToProblemReportScreen = () => {
-        navigation.navigate('Problem_Report');
-      }
+  const goToProblemReportScreen = () => {
+    navigation.navigate("Problem_Report");
+  };
+  const goToSendSupportScreen = () => {
+    navigation.navigate("Send_Support");
+  };
   return (
     <View style={styles.container}>
       <View style={styles.userContent}>
@@ -23,7 +26,10 @@ const home = () => {
       <View style={styles.container2}>
         <Text style={styles.text1}>Dịch vụ trực tuyến</Text>
 
-        <TouchableOpacity style={styles.problemReport} onPress={goToProblemReportScreen}>
+        <TouchableOpacity
+          style={styles.problemReport}
+          onPress={goToProblemReportScreen}
+        >
           <Image
             style={styles.imgEdit}
             source={require("../images/edit.png")}
@@ -31,7 +37,7 @@ const home = () => {
           <Text style={styles.text2}>Báo cáo sự cố</Text>
         </TouchableOpacity>
 
-        <TouchableOpacity style={styles.ITSupport}>
+        <TouchableOpacity style={styles.ITSupport} onPress={goToSendSupportScreen}>
           <Image
             style={styles.imgEdit}
             source={require("../images/global.png")}
@@ -157,7 +163,7 @@ const styles = StyleSheet.create({
   },
   text4: {
     marginStart: 40,
-    width:200,
+    width: 200,
     color: "#000",
     fontSize: 16,
     fontWeight: "500",
