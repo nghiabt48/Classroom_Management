@@ -2,7 +2,7 @@ import { StyleSheet, Text, View, Image, TouchableOpacity,Button } from "react-na
 import React, { cloneElement, useState } from "react";
 import { useNavigation } from "@react-navigation/native";
 import Modal from "react-native-modal";
-const login = () => {
+const Logins = () => {
   const [isModalVisible, setModalVisible] = useState(false);
   const navigation = useNavigation();
   const goToHomeScreen = () => {
@@ -57,7 +57,7 @@ const login = () => {
   );
 };
 
-export default login;
+export default Logins;
 
 const styles = StyleSheet.create({
   container: {
