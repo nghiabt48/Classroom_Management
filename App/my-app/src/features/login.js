@@ -6,7 +6,7 @@ const login = () => {
   const [isModalVisible, setModalVisible] = useState(false);
   const navigation = useNavigation();
   const goToHomeScreen = () => {
-    navigation.navigate("Home");
+    navigation.navigate("HomeMN");
   };
 
   //Hiển thị bảng chọn cơ sở 
