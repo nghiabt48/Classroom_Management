@@ -1,7 +1,7 @@
 import { StyleSheet, Text, View, Image, TouchableOpacity } from "react-native";
 import React from "react";
 import { useNavigation } from "@react-navigation/native";
-const home = (props) => {
+const Homee = (props) => {
   const navigation = useNavigation();
 
   const goToProblemReportScreen = () => {
@@ -57,7 +57,7 @@ const home = (props) => {
   );
 };
 
-export default home;
+export default Homee;
 
 const styles = StyleSheet.create({
   container: {
