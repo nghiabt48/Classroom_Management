@@ -2,7 +2,10 @@ const mongoose = require('mongoose')
 
 const SuCoSchema = new mongoose.Schema({
     tenSuCo: String,
-    LoaiSuCo: String,
+    loaiSuCo: {
+        type: [mongoose.Types.ObjectId],
+        ref: 'LoaiSuCo'
+    },
     trangThai: String,
     hinhAnh: String,
     moTa: String,
@@ -15,8 +18,8 @@ const SuCoSchema = new mongoose.Schema({
         type: [mongoose.Types.ObjectId],
         ref: 'GiangVien'
     },
-    thoiGianTiepNhan:String,
-    thoiGianHoanThanh:String,
+    thoiGianTiepNhan: Date,
+    thoiGianHoanThanh: Date
 })
 const SuCo = mongoose.model('SuCo', SuCoSchema)
 module.exports = SuCo
