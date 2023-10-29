@@ -1,5 +1,5 @@
 const express = require('express');
-var router = express.Router();
+const router = express.Router();
 const CoSoModel = require('../model/CoSoModel')
 
 router.post("/",(req,res)=>{
@@ -16,3 +16,4 @@ router.post("/",(req,res)=>{
         res.json('that bai')
     }
 })
+module.exports = router

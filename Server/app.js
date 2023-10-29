@@ -7,6 +7,9 @@ var logger = require('morgan');
 var SuCoRouter = require('./router/SuCoRouter');
 var PhongHocRouter = require('./router/PhongHocRouter');
 var CoSoRouter = require('./router/CoSoRouter');
+const giangVienRouter = require('./router/GiangVienRouter')
+const googleAuthRouter = require('./router/GoogleAuthRouter')
+const oauthRouter = require('./router/OAuth')
 
 var app = express();
 
@@ -20,9 +23,11 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('api/SuCo', SuCoRouter);
-app.use('api/CoSo', CoSoRouter);
-
+app.use('/api/su-co', SuCoRouter);
+app.use('/api/co-so', CoSoRouter);
+app.use('/api/giang-vien', giangVienRouter);
+app.use('/oauth', oauthRouter)
+app.use('/request', googleAuthRouter)
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));

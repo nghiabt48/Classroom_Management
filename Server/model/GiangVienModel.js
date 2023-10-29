@@ -1,14 +1,23 @@
 const mongoose = require('mongoose')
 
 const GiangVienSchema = new mongoose.Schema({
-  ten: String,
-  email: String,
-  sdt: String,
+  name: String,
+  email: {
+    type: String,
+    required: true,
+    unique: true
+  },
+  phone: String,
   coSo: {
-    type: [mongoose.Types.ObjectId],
+    type: mongoose.Types.ObjectId,
     ref: 'CoSo'
   },
-  auth_role: String
+  picture: String,
+  auth_role: {
+    type: String,
+    enum: ['GiangVien', 'NhanVien', 'Manager'],
+    default: 'GiangVien'
+  },
 })
 const GiangVien = mongoose.model('GiangVien', GiangVienSchema)
 module.exports = GiangVien
