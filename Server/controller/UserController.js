@@ -1,32 +1,22 @@
 const User = require('../model/GiangVienModel.js')
-exports.register = async(req, res, next) => {
-  try{
-    const newUser = await User.create(req.body)
-    res.status(201).json({
-      status: 'success',
-      user: newUser
-    })
-  }
-  catch(err){
-    res.status(400).json({
-      status: 'failed',
-      message: err.message
-    })
-  }
+const SuCo = require('../model/SuCoModel.js')
+const catchAsync = require('../utils/catchAsync')
+exports.getMe = (req, res, next) => {
+  req.params.id = req.user.id
+  next()
 }
-exports.login = async(req, res, next) => {
-  try{
-    const user = await User.find({email: req.body.email, password: req.body.password})
-    res.status(201).json({
-      status: 'success',
-      message: 'Login successfully',
-      id: user[0]._id
-    })
-  }
-  catch(err){
-    res.status(400).json({
-      status: 'failed',
-      message: "Invalid email or password"
-    })
-  }
-}
+exports.getUser =catchAsync(async (req, res, next) => {
+  let query = User.findById(req.params.id)
+  const user = await query
+  if (!user) return next(new AppError('User with this id not found', 404))
+  res.status(200).json({
+    status: 'success',
+    user
+  })
+})
+exports.getMyProblems = catchAsync(async (req, res, next) => {
+  res.status(200).json({
+    status: 'success',
+    su_co: await SuCo.findOne({ giangVien: req.params.id }).populate('loaiSuCo', 'ten phong_tiep_nhan')
+  })
+})

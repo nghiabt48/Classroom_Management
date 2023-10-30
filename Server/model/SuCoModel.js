@@ -4,13 +4,10 @@ const offsetHours = 7;
 const date = new Date(currentTimestamp + offsetHours * 60 * 60 * 1000);
 
 const SuCoSchema = new mongoose.Schema({
-    tenSuCo: String,
     loaiSuCo: {
-        type: [mongoose.Types.ObjectId],
+        type: mongoose.Types.ObjectId,
         ref: 'LoaiSuCo'
     },
-    trangThai: String,
-    loaiSuCo: String,
     trangThai: {
         type: String,
         enum: ['Pending', 'Processing', 'Completed'],
@@ -22,16 +19,18 @@ const SuCoSchema = new mongoose.Schema({
         type: Date,
         default: date.toLocaleString()
     },
-    phongHoc: {
-        type: mongoose.Types.ObjectId,
-        ref: 'PhongHoc'
-    },
+    phongHoc: String,
     giangVien: {
         type: mongoose.Types.ObjectId,
         ref: 'GiangVien'
     },
     thoiGianTiepNhan: Date,
-    thoiGianHoanThanh: Date
+    thoiGianHoanThanh: Date,
+    danh_gia: {
+        phong: String,
+        thoi_gian: Date,
+        mo_ta: String
+    }
 })
 const SuCo = mongoose.model('SuCo', SuCoSchema)
 module.exports = SuCo

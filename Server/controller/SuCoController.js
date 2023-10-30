@@ -1,8 +1,16 @@
 const SuCo = require('../model/SuCoModel')
+const LoaiSuCo = require('../model/LoaiSuCoModel')
 // Create new
 exports.createSuCo = async (req, res, next) => {
   try {
-    const suCo = await SuCo.create(req.body)
+    const loai_su_co = await LoaiSuCo.findOne({ten: req.body.loaiSuCo})
+    const suCo = await SuCo.create({
+      loaiSuCo: loai_su_co._id,
+      hinhAnh: req.body.hinhAnh ? req.body.hinhAnh : "",
+      moTa: req.body.moTa ? req.body.moTa : "",
+      phongHoc: req.body.phongHoc,
+      giangVien: req.user.id
+    }) 
     res.status(201).json({
       status: 'success',
       data: suCo

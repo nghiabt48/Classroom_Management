@@ -2,12 +2,10 @@ const mongoose = require('mongoose')
 
 const LoaiSuCoSchema = new mongoose.Schema({
     ten: String,
-    phanLoai: String,
-    phongBan: {
-        type: [mongoose.Types.ObjectId],
-        ref: 'PhongBan'
-    },
-    auth_role: String
+    phong_tiep_nhan: {
+        type: String,
+        enum: ['ky_thuat', 'IT']
+    }
 })
 const LoaiSuCo = mongoose.model('LoaiSuCo', LoaiSuCoSchema)
 module.exports = LoaiSuCo

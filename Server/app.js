@@ -9,7 +9,8 @@ var PhongHocRouter = require('./router/PhongHocRouter');
 var CoSoRouter = require('./router/CoSoRouter');
 const giangVienRouter = require('./router/GiangVienRouter')
 const googleAuthRouter = require('./router/GoogleAuthRouter')
-const oauthRouter = require('./router/OAuth')
+const oAuth = require('./router/OAuth')
+const oAuthRouter = oAuth.router
 
 var app = express();
 
@@ -26,7 +27,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/api/su-co', SuCoRouter);
 app.use('/api/co-so', CoSoRouter);
 app.use('/api/giang-vien', giangVienRouter);
-app.use('/oauth', oauthRouter)
+app.use('/oauth', oAuthRouter)
 app.use('/request', googleAuthRouter)
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
