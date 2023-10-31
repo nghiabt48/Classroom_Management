@@ -4,9 +4,12 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
-var SuCoRouter = require('./router/SuCoRouter');
-var PhongHocRouter = require('./router/PhongHocRouter');
-var CoSoRouter = require('./router/CoSoRouter');
+var suCoRouter = require('./router/SuCoRouter');
+const phongHocRouter = require('./router/PhongHocRouter');
+const coSoRouter = require('./router/CoSoRouter');
+const tangRouter = require('./router/TangRouter');
+const toaNhaRouter = require('./router/ToaNhaRouter');
+const suKienRouter = require('./router/SuKienRouter');
 const giangVienRouter = require('./router/GiangVienRouter')
 const googleAuthRouter = require('./router/GoogleAuthRouter')
 const oAuth = require('./router/OAuth')
@@ -24,8 +27,12 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/api/su-co', SuCoRouter);
-app.use('/api/co-so', CoSoRouter);
+app.use('/api/su-co', suCoRouter);
+app.use('/api/co-so', coSoRouter);
+app.use('/api/phong-hoc', phongHocRouter);
+app.use('/api/tang', tangRouter);
+app.use('/api/toa-nha', toaNhaRouter);
+app.use('/api/su-kien', suKienRouter);
 app.use('/api/giang-vien', giangVienRouter);
 app.use('/oauth', oAuthRouter)
 app.use('/request', googleAuthRouter)

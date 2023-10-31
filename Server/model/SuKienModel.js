@@ -2,7 +2,7 @@ const mongoose = require('mongoose')
 
 const SuKienSchema = new mongoose.Schema({
     title: String,
-    thoiGian: String,
+    thoiGian: Date,
     phongBan: String,
     moTa: String,
     diaDiem: String,
