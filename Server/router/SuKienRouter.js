@@ -1,8 +1,8 @@
 const express = require('express');
 var router = express.Router();
-const SuKienControler = require('../controller/SuKienControler')
+const SuKienControler = require('../controller/SuKienController')
 
-router.get('/', SuKienControler.getSuKien)
-router.post('/', SuKienControler.addSuKien)
-router.delete('/:id', SuKienControler.deleteSuKien)
+router.get('/getSuKien', SuKienControler.getSuKien)
+router.post('/createSuKien', SuKienControler.addSuKien)
+router.delete('/deleteSuKien/:id', SuKienControler.deleteSuKien)
 module.exports = router

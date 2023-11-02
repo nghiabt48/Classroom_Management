@@ -10,6 +10,7 @@ const coSoRouter = require('./router/CoSoRouter');
 const tangRouter = require('./router/TangRouter');
 const toaNhaRouter = require('./router/ToaNhaRouter');
 const suKienRouter = require('./router/SuKienRouter');
+const taiSanRouter = require('./router/TaiSanRouter');
 const giangVienRouter = require('./router/GiangVienRouter')
 const googleAuthRouter = require('./router/GoogleAuthRouter')
 const oAuth = require('./router/OAuth')
@@ -33,6 +34,7 @@ app.use('/api/phong-hoc', phongHocRouter);
 app.use('/api/tang', tangRouter);
 app.use('/api/toa-nha', toaNhaRouter);
 app.use('/api/su-kien', suKienRouter);
+app.use('/api/tai-san', taiSanRouter);
 app.use('/api/giang-vien', giangVienRouter);
 app.use('/oauth', oAuthRouter)
 app.use('/request', googleAuthRouter)
