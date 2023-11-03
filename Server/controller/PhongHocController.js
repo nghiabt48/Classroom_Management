@@ -1,52 +1,63 @@
 const PhongHoc = require('../model/PhongHocModel');
 const Tang = require('../model/TangModel');
 
-
-exports.getPhongTheoTang = async (req, res, next) => {
+exports.getPhong = async (req, res, next) => {
     try {
-        const data = await PhongHoc.find({ tang: req.params.id });
+        const data = await PhongHoc.find();
         res.status(500).json({
-            status: 'true',
+            status: 'success',
             data
         })
     } catch (error) {
         res.status(500).json({
-            status: 'false'
+            status: 'failed'
+        })
+    }
+}
+exports.getPhongTheoTang = async (req, res, next) => {
+    try {
+        const data = await PhongHoc.find({ tang: req.params.id });
+        res.status(500).json({
+            status: 'success',
+            data
+        })
+    } catch (error) {
+        res.status(500).json({
+            status: 'failed'
         })
     }
 }
 exports.addPhong = async (req, res, next) => {
     try {
-         const tang = await Tang.find({ _id: req.body.tang })
-        if (tang) {
-            const data = await PhongHoc.create(req.body)
-            res.status(500).json({
-                status: 'true',
-                data
-            })
-        } else {
-            res.status(500).json({
-                status: 'false1'
-            })
-        }
-       
+        const tang = await Tang.findOne({ tenTang: req.body.tang })
+
+        const data = await PhongHoc.create({
+            tenPhong: req.body.tenPhong,
+            tang: tang._id
+        })
+        res.status(500).json({
+            status: 'success',
+            data
+        })
+
+
     } catch (error) {
         res.status(500).json({
-            status: 'false'
+            status: 'failed'
         })
     }
-    
+
 }
 exports.deletePhong = async (req, res, next) => {
     try {
         const data = await PhongHoc.deleteOne({ _id: req.params.id })
         res.status(500).json({
-            status: 'true',
+            status: 'success',
             data
         })
     } catch (error) {
         res.status(500).json({
-            status: 'false'
+            status: 'failed'
         })
     }
 }
