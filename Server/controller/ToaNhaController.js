@@ -5,59 +5,57 @@ exports.getToaNha = async (req, res, next) => {
     try {
         const data = await ToaNha.find();
         res.status(500).json({
-            status: 'true',
+            status: 'success',
             data
         })
     } catch (error) {
         res.status(500).json({
-            status: 'false'
+            status: 'failed'
         })
     }
 }
 exports.getToaNhaTheoCoSo = async (req, res, next) => {
     try {
-        const data = await ToaNha.find({coSo: req.params.id});
+        const data = await ToaNha.find({ coSo: req.params.id });
         res.status(500).json({
-            status: 'true',
+            status: 'success',
             data
         })
     } catch (error) {
         res.status(500).json({
-            status: 'false'
+            status: 'failed'
         })
     }
 }
 exports.addToaNha = async (req, res, next) => {
     try {
-        const coSo = await CoSo.find({ _id: req.body.coSo })
-        if(coSo){
-            const data = await ToaNha.create(req.body)
-            res.status(500).json({
-                status: 'true',
-                data
-            })
-        }else{
-            res.status(500).json({
-                status: 'false'
-            })
-        }
-        
+        const co_So = await CoSo.findOne({ tenCoSo: req.body.coSo })
+        const data = await ToaNha.create({
+            tenToa: req.body.tenToa,
+            coSo: co_So._id
+        })
+        res.status(500).json({
+            status: 'success',
+            data
+        })
+
+
     } catch (error) {
         res.status(500).json({
-            status: 'false'
+            status: 'failed'
         })
     }
 }
 exports.deleteToaNha = async (req, res, next) => {
     try {
-        const data = await ToaNha.deleteOne({_id: req.params.id})
+        const data = await ToaNha.deleteOne({ _id: req.params.id })
         res.status(500).json({
-            status: 'true',
+            status: 'success',
             data
         })
     } catch (error) {
         res.status(500).json({
-            status: 'false'
+            status: 'failed'
         })
     }
 }
