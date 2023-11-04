@@ -12,6 +12,8 @@ import Modal from "react-native-modal";
 import "expo-dev-client";
 import { GoogleSignin } from "@react-native-google-signin/google-signin";
 import auth from '@react-native-firebase/auth';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import AxiosIntance from "../../AxiosIntance";
 const Logins = () => {
   const [initializing, setInitializing] = useState(true);
   const [user, setUser] = useState();
@@ -57,7 +59,7 @@ const Logins = () => {
     userSignIn.then((user) =>{
       console.log(user);
       navigation.navigate("HomeMN");
-      console.log(idToken);
+      AsyncStorage.setItem('token', idToken)
     })
     .catch((error)=>{
       console.error(error);
