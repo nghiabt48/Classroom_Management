@@ -6,7 +6,10 @@ const AuthController = require('./../controller/AuthController')
 
 router.get('/loai', suCoController.getAllLoaiSuCo)
 router.use(AuthController.protect)
-router.post('/add', suCoController.createSuCo)
+router.route('/add')
+  .post(suCoController.uploadProblemImage)
+  .post(suCoController.saveProblemImageToStorage)
+  .post(suCoController.createSuCo)
 router.get('/search', suCoController.getSuCo)
 
 module.exports = router
