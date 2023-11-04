@@ -27,7 +27,7 @@ const Logins = () => {
   });
 
   function onAuthStateChanged(user) {
-    setUser(user);
+    setUser(user);  
     if (initializing) setInitializing(false);
   }
 
@@ -41,14 +41,13 @@ const Logins = () => {
       await GoogleSignin.revokeAccess();
       await GoogleSignin.signOut();
     } catch (error) {
-      console.error(error);
+      console.error(error); 
     }
   };
 
   const onGoogleButtonPress = async() => {
     // Get the users ID token
     const { idToken } = await GoogleSignin.signIn();
-  
     // Create a Google credential with the token
     const googleCredential = auth.GoogleAuthProvider.credential(idToken);
 
