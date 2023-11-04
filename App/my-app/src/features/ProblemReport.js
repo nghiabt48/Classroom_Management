@@ -22,7 +22,7 @@ const ProblemReport = () => {
   const [moTa, setmoTa] = useState("")
   useEffect(() => {
     const getListLoaiSuCo = async () => {
-      const response = await AxiosIntance().get("/su-co/loai");
+      const response = await AxiosIntance().get("/su-co/loai?phong_tiep_nhan=ky_thuat");
       if (response.status == "success") {
         setloaiSuCo(response.data);
            console.log(response.data)
