@@ -29,11 +29,11 @@ exports.getPhongTheoTang = async (req, res, next) => {
 }
 exports.addPhong = async (req, res, next) => {
     try {
-        const tang = await Tang.find({ _id: req.body.tang })
+        const tang = await Tang.findOne({ _id: req.body.tang })
 
         const data = await PhongHoc.create({
             tenPhong: req.body.tenPhong,
-            tang: tang
+            tang: tang._id
         })
         res.status(500).json({
             status: 'success',
