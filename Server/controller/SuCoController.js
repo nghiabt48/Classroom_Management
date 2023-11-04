@@ -82,7 +82,7 @@ exports.getAllLoaiSuCo = async(req, res, next) => {
   try {
     res.status(200).json({
       status: 'success',
-      data: await LoaiSuCo.find()
+      data: await LoaiSuCo.find(req.query)
     })
   } catch (err) {
     res.status(400).json({
