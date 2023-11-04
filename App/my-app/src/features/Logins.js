@@ -6,7 +6,7 @@ import {
   TouchableOpacity,
   Button,
 } from "react-native";
-import React, {useState,useEffect } from "react";
+import React, {useState, useEffect } from "react";
 import { useNavigation } from "@react-navigation/native";
 import Modal from "react-native-modal";
 import "expo-dev-client";
@@ -57,8 +57,7 @@ const Logins = () => {
     // Sign-in the user with the credential
     const userSignIn = auth().signInWithCredential(googleCredential);
     userSignIn.then((user) =>{
-      console.log(user);
-      navigation.navigate("HomeMN");
+      navigation.navigate("HomeGV");
       AsyncStorage.setItem('token', idToken)
     })
     .catch((error)=>{
