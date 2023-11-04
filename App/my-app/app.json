@@ -2,7 +2,9 @@
   "expo": {
     "name": "my-app",
     "slug": "my-app",
-    "plugins": ["@react-native-google-signin/google-signin"],
+    "plugins": [
+      "@react-native-google-signin/google-signin"
+    ],
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -33,6 +35,7 @@
       "eas": {
         "projectId": "38c10437-a943-4501-8f1f-0b85b0d237b8"
       }
-    }
+    },
+    "owner": "asdadasd"
   }
 }
