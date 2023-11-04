@@ -6,7 +6,7 @@ import {
   TouchableOpacity,
   Button,
 } from "react-native";
-import React, {useState, useEffect } from "react";
+import React, {useState, useEffect,useContext } from "react";
 import { useNavigation } from "@react-navigation/native";
 import Modal from "react-native-modal";
 import "expo-dev-client";
@@ -14,9 +14,11 @@ import { GoogleSignin } from "@react-native-google-signin/google-signin";
 import auth from '@react-native-firebase/auth';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import AxiosIntance from "../../AxiosIntance";
-const Logins = () => {
+import { AppConText } from "./AppConText";
+const Logins = (props) => {
   const [initializing, setInitializing] = useState(true);
   const [user, setUser] = useState();
+  const { infoUser, setinfoUser } = useContext(AppConText);
   const [isModalVisible, setModalVisible] = useState(false);
   const navigation = useNavigation();
   const goToHomeScreen = () => {
@@ -57,8 +59,9 @@ const Logins = () => {
     const userSignIn = auth().signInWithCredential(googleCredential);
     userSignIn.then((user) =>{
       navigation.navigate("HomeGV");
-      AsyncStorage.setItem('token', idToken)
-    })
+      AsyncStorage.setItem('token', idToken);
+      setinfoUser(user.additionalUserInfo.profile);
+    })  
     .catch((error)=>{
       console.error(error);
     })
@@ -84,7 +87,7 @@ const Logins = () => {
           <Text style={styles.text1}>Lựa chọn cơ sở</Text>
         </TouchableOpacity>
 
-        <Modal isVisible={isModalVisible}>
+        <Modal isVisible={isModalVisible} onBackdropPress={toggleModal}>
           <View style={styles.modalContainer}>
             <Text style={styles.txtCS}>FPT Polytechnic HO</Text>
             <View style={styles.line}></View>
