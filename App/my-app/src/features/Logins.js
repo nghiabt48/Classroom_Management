@@ -12,6 +12,7 @@ import Modal from "react-native-modal";
 import "expo-dev-client";
 import { GoogleSignin } from "@react-native-google-signin/google-signin";
 import auth from '@react-native-firebase/auth';
+import AsyncStorage from "@react-native-async-storage/async-storage";
 const Logins = () => {
   const [initializing, setInitializing] = useState(true);
   const [user, setUser] = useState();
@@ -25,7 +26,7 @@ const Logins = () => {
   });
 
   function onAuthStateChanged(user) {
-    setUser(user);
+    setUser(user);  
     if (initializing) setInitializing(false);
   }
 
@@ -39,14 +40,13 @@ const Logins = () => {
       await GoogleSignin.revokeAccess();
       await GoogleSignin.signOut();
     } catch (error) {
-      console.error(error);
+      console.error(error); 
     }
   };
 
   const onGoogleButtonPress = async() => {
     // Get the users ID token
     const { idToken } = await GoogleSignin.signIn();
-  
     // Create a Google credential with the token
     const googleCredential = auth.GoogleAuthProvider.credential(idToken);
 
