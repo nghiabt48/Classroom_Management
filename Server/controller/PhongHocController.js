@@ -61,3 +61,17 @@ exports.deletePhong = async (req, res, next) => {
         })
     }
 }
+exports.getPhongTheoToa = async (req, res, next) => {
+    try {
+        res.status(200).json({
+            status: 'success',
+            data: await PhongHoc.find({tenPhong: {$regex: new RegExp(`^${req.params.toa}`)}}) 
+        })
+    } catch (error) {
+        res.status(500).json({
+            status: 'failed',
+            message: err
+        })
+    }
+}
+

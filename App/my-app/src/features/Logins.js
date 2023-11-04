@@ -6,13 +6,14 @@ import {
   TouchableOpacity,
   Button,
 } from "react-native";
-import React, {useState,useEffect } from "react";
+import React, {useState, useEffect } from "react";
 import { useNavigation } from "@react-navigation/native";
 import Modal from "react-native-modal";
 import "expo-dev-client";
 import { GoogleSignin } from "@react-native-google-signin/google-signin";
 import auth from '@react-native-firebase/auth';
-import AsyncStorage from "@react-native-async-storage/async-storage";
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import AxiosIntance from "../../AxiosIntance";
 const Logins = () => {
   const [initializing, setInitializing] = useState(true);
   const [user, setUser] = useState();
@@ -55,9 +56,8 @@ const Logins = () => {
     // Sign-in the user with the credential
     const userSignIn = auth().signInWithCredential(googleCredential);
     userSignIn.then((user) =>{
-      console.log(user);
-      navigation.navigate("HomeMN");
-      console.log(idToken);
+      navigation.navigate("HomeGV");
+      AsyncStorage.setItem('token', idToken)
     })
     .catch((error)=>{
       console.error(error);

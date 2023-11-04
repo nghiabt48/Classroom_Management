@@ -3,7 +3,7 @@ const mongoose = require('mongoose')
 const PhongHocSchema = new mongoose.Schema({
   tenPhong: String,
   tang: {
-    type: [mongoose.Types.ObjectId],
+    type: mongoose.Types.ObjectId,
     ref: 'tang'
   }
 })

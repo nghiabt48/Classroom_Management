@@ -22,6 +22,19 @@ exports.createSuCo = async (req, res, next) => {
     })
   }
 }
+exports.getAllLoaiSuCo = async(req, res, next) => {
+  try {
+    res.status(200).json({
+      status: 'success',
+      data: await LoaiSuCo.find()
+    })
+  } catch (err) {
+    res.status(400).json({
+      status: 'failed',
+      message: err.message
+    })
+  }
+}
 exports.getSuCo = async (req, res) => {
   try {
     const userId = req.query.user_id
