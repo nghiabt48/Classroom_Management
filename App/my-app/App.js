@@ -13,23 +13,14 @@ import Logins from "./src/features/Logins";
 import { AppConTextProvider } from "./src/features/AppConText";
 import LichSuDanhGiaSuCo from "./src/features/LichSuBaoCaoSuCo";
 import LichSuBaoCaoSuCo from "./src/features/LichSuBaoCaoSuCo";
+import AppNavigator from "./src/features/AppNavigator";
 
 const Stack = createNativeStackNavigator();
 export default function App() {
   return (
     <AppConTextProvider>
       <NavigationContainer>
-        <Stack.Navigator screenOptions={{ headerShown: false }}>
-          <Stack.Screen name="Login" component={Logins} />
-          <Stack.Screen name="HomeGV" component={Homee} />
-          <Stack.Screen name="Problem_Report" component={ProblemReport} />
-          <Stack.Screen name="Send_Support" component={SendSupport} />
-          <Stack.Screen name="LichSuBaoCaoSuCo" component={LichSuBaoCaoSuCo} />
-          <Stack.Screen name="HomeNV" component={HomeNhanVien} />
-          <Stack.Screen name="HomeMN" component={HomeManager} />
-          <Stack.Screen name="ListNS" component={ListNhanSu} />
-          <Stack.Screen name="DetailsRate" component={ChiTietDanhGia} />
-        </Stack.Navigator>
+       <AppNavigator/>
       </NavigationContainer>
     </AppConTextProvider>
   );

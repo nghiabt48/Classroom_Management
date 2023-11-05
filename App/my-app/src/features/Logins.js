@@ -18,6 +18,7 @@ import { AppConText } from "./AppConText";
 const Logins = (props) => {
   const [initializing, setInitializing] = useState(true);
   const [user, setUser] = useState();
+  const { isLogin, setisLogin } = useContext(AppConText);
   const { infoUser, setinfoUser } = useContext(AppConText);
   const [isModalVisible, setModalVisible] = useState(false);
   const navigation = useNavigation();
@@ -59,9 +60,9 @@ const Logins = (props) => {
     // Sign-in the user with the credential
     const userSignIn = auth().signInWithCredential(googleCredential);
     userSignIn.then((user) =>{
-      navigation.navigate("LichSuBaoCaoSuCo");
       AsyncStorage.setItem('token', idToken);
       setinfoUser(user.additionalUserInfo.profile);
+      setisLogin(true);
     })  
     .catch((error)=>{
       console.error(error);
