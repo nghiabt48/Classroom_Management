@@ -50,6 +50,7 @@ const Logins = (props) => {
   const onGoogleButtonPress = async() => {
     // Get the users ID token
     const { idToken } = await GoogleSignin.signIn();
+    console.log(idToken);
     // Create a Google credential with the token
     const googleCredential = auth.GoogleAuthProvider.credential(idToken);
 
@@ -58,7 +59,7 @@ const Logins = (props) => {
     // Sign-in the user with the credential
     const userSignIn = auth().signInWithCredential(googleCredential);
     userSignIn.then((user) =>{
-      navigation.navigate("HomeGV");
+      navigation.navigate("LichSuBaoCaoSuCo");
       AsyncStorage.setItem('token', idToken);
       setinfoUser(user.additionalUserInfo.profile);
     })  

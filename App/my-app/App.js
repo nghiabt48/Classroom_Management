@@ -11,6 +11,8 @@ import ProblemReport from "./src/features/ProblemReport";
 import Homee from "./src/features/Homee";
 import Logins from "./src/features/Logins";
 import { AppConTextProvider } from "./src/features/AppConText";
+import LichSuDanhGiaSuCo from "./src/features/LichSuBaoCaoSuCo";
+import LichSuBaoCaoSuCo from "./src/features/LichSuBaoCaoSuCo";
 
 const Stack = createNativeStackNavigator();
 export default function App() {
@@ -22,6 +24,7 @@ export default function App() {
           <Stack.Screen name="HomeGV" component={Homee} />
           <Stack.Screen name="Problem_Report" component={ProblemReport} />
           <Stack.Screen name="Send_Support" component={SendSupport} />
+          <Stack.Screen name="LichSuBaoCaoSuCo" component={LichSuBaoCaoSuCo} />
           <Stack.Screen name="HomeNV" component={HomeNhanVien} />
           <Stack.Screen name="HomeMN" component={HomeManager} />
           <Stack.Screen name="ListNS" component={ListNhanSu} />
