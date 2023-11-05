@@ -93,7 +93,8 @@ const styles = StyleSheet.create({
     marginTop: 20,
     flex: 1,
     backgroundColor: "#FFFFFF",
-    borderRadius: 24,
+    borderTopLeftRadius:24,
+    borderTopRightRadius:24,
   },
   boxsuco: {
     flexDirection: "row",
