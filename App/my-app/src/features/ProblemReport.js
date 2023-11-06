@@ -4,7 +4,7 @@ import {
   View,
   Image,
   TouchableOpacity,
-  TextInput, FlatList, ToastAndroid
+  TextInput, FlatList, ToastAndroid, ScrollView
 } from "react-native";
 import React, { useState, useEffect } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
@@ -88,7 +88,7 @@ const ProblemReport = () => {
         </TouchableOpacity>
         <Text style={styles.text1}>Báo cáo sự cố</Text>
       </View>
-      <TouchableOpacity style={styles.edtProblem} onPress={toggleModalPhong} onBackdropPress={toggleModalPhong}>
+      <TouchableOpacity style={styles.edtProblem} onPress={toggleModalPhong}>
         <Text style={currentPhongChoosing != "" ? styles.text5 : styles.text4}>{currentPhongChoosing != "" ? currentPhongChoosing : 'Phòng'} </Text>
         <Image
           style={styles.btnDropdown}
@@ -96,8 +96,8 @@ const ProblemReport = () => {
           onPress={toggleModal}
         />
       </TouchableOpacity>
-      <Modal isVisible={isModalPhongVisible}>
-        <View style={styles.modalContainer}>
+      <Modal isVisible={isModalPhongVisible}  onBackdropPress={toggleModalPhong}>
+        <ScrollView style={styles.modalContainer}>
           {dataPhong.map((item, index) => (
             <TouchableOpacity key={index} onPress={() => {
               setcurrentPhongChoosing(item.tenPhong)
@@ -107,10 +107,10 @@ const ProblemReport = () => {
               <Text style={styles.txtProblem}>{item.tenPhong}</Text>
             </TouchableOpacity>
           ))}
-        </View>
+        </ScrollView>
       </Modal>
 
-      <TouchableOpacity style={styles.edtProblem} onPress={toggleModal} onBackdropPress={toggleModal}>
+      <TouchableOpacity style={styles.edtProblem} onPress={toggleModal}>
         <Text style={currentChoosing != "" ? styles.text5 : styles.text4}>{currentChoosing != "" ? currentChoosing : 'Sự cố đang gặp phải'} </Text>
         <Image
           style={styles.btnDropdown}
@@ -118,7 +118,7 @@ const ProblemReport = () => {
           onPress={toggleModal}
         />
       </TouchableOpacity>
-      <Modal isVisible={isModalVisible}>
+      <Modal isVisible={isModalVisible}  onBackdropPress={toggleModal}>
         <View style={styles.modalContainer}>
           {loaiSuCo? loaiSuCo.map((item, index) => (
             <TouchableOpacity key={index} onPress={() => {
@@ -290,7 +290,7 @@ const styles = StyleSheet.create({
     fontWeight: "700",
   },
   modalContainer: {
-    paddingTop: 13,
+    paddingTop: 10,
     paddingBottom: 24,
     paddingHorizontal: 7,
     borderRadius: 12,
