@@ -1,8 +1,18 @@
 const express = require('express');
 var router = express.Router();
-const CoSoController = require('../controller/CoSoController')
+const CoSoModel = require('../model/CoSoModel')
 
-router.get('/getCoSo', CoSoController.getAll)
-router.post('/createCoSo', CoSoController.addCoSo)
-router.delete('/deleteCoSo/:id',CoSoController.deleteCoSo)
-module.exports = router
+router.post("/",(req,res)=>{
+    var ten = req.body.ten
+    var diachi = req.body.diachi
+
+    CoSoModel.create({
+        tenCoSo: ten,
+        diaChi: diachi
+    })
+    try {
+        res.json('thanh cong')
+    } catch (error) {
+        res.json('that bai')
+    }
+})

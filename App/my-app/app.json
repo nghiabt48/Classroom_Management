@@ -2,9 +2,6 @@
   "expo": {
     "name": "my-app",
     "slug": "my-app",
-    "plugins": [
-      "@react-native-google-signin/google-signin"
-    ],
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -21,21 +18,13 @@
       "supportsTablet": true
     },
     "android": {
-      "googleServicesFile": "./google-services.json",
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      },
-      "package": "com.vihao.myapp"
+      }
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    },
-    "extra": {
-      "eas": {
-        "projectId": "38c10437-a943-4501-8f1f-0b85b0d237b8"
-      }
-    },
-    "owner": "asdadasd"
+    }
   }
 }

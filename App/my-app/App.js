@@ -10,26 +10,36 @@ import ChiTietDanhGia from "./src/features/Manager/ChiTietDanhGia";
 import ProblemReport from "./src/features/ProblemReport";
 import Homee from "./src/features/Homee";
 import Logins from "./src/features/Logins";
-import { AppConTextProvider } from "./src/features/AppConText";
+import Contact from "./src/features/Contact";
+import DetailsContact from "./src/features/DetailsContact";
+import Setting from "./src/features/Setting";
+import DanhSachTang from "./src/features/NhanVien/DanhSachTangToaF";
+import Tang1 from "./src/features/NhanVien/Tang1";
+import DanhSachTangToaP from "./src/features/NhanVien/DanhSachTangToaP";
+import DanhSachTangToaT from "./src/features/NhanVien/DanhSachTangToaT";
+import ThanhTich from "./src/features/Manager/ThanhTich";
 
 const Stack = createNativeStackNavigator();
 export default function App() {
   return (
-    <AppConTextProvider>
-      <NavigationContainer>
-        <Stack.Navigator screenOptions={{ headerShown: false }}>
-          <Stack.Screen name="Login" component={Logins} />
-          <Stack.Screen name="HomeGV" component={Homee} />
-          <Stack.Screen name="Problem_Report" component={ProblemReport} />
-          <Stack.Screen name="Send_Support" component={SendSupport} />
-          <Stack.Screen name="HomeNV" component={HomeNhanVien} />
-          <Stack.Screen name="HomeMN" component={HomeManager} />
-          <Stack.Screen name="ListNS" component={ListNhanSu} />
-          <Stack.Screen name="DetailsRate" component={ChiTietDanhGia} />
-        </Stack.Navigator>
-      </NavigationContainer>
-    </AppConTextProvider>
+    // <NavigationContainer>
+    //   <Stack.Navigator screenOptions={{ headerShown: false }}>
+    //     <Stack.Screen name="Login" component={Logins} />
+    //     <Stack.Screen name="HomeGV" component={Homee} />
+    //     <Stack.Screen name="Problem_Report" component={ProblemReport} />
+    //     <Stack.Screen name="Send_Support" component={SendSupport} />
+    //     <Stack.Screen name="HomeNV" component={HomeNhanVien} />
+    //     <Stack.Screen name="HomeMN" component={HomeManager} />
+    //     <Stack.Screen name="ListNS" component={ListNhanSu} />
+    //     <Stack.Screen name="DetailsRate" component={ChiTietDanhGia} />
+    //   </Stack.Navigator>
+    // </NavigationContainer>
+    
+
+    <ThanhTich></ThanhTich>
+    
   );
+  
 }
 
 const styles = StyleSheet.create({

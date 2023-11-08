@@ -1,33 +1,23 @@
-import {
-  StyleSheet,
-  Text,
-  View,
-  Image,
-  TouchableOpacity,
-  ToastAndroid,
-} from "react-native";
-import React, { useContext, useState, useEffect } from "react";
+import { StyleSheet, Text, View, Image, TouchableOpacity } from "react-native";
+import React from "react";
 import { useNavigation } from "@react-navigation/native";
-import { AppConText } from "./AppConText";
 const Homee = (props) => {
   const navigation = useNavigation();
-  const { infoUser, setinfoUser } = useContext(AppConText);
+
   const goToProblemReportScreen = () => {
     navigation.navigate("Problem_Report");
   };
   const goToSendSupportScreen = () => {
     navigation.navigate("Send_Support");
   };
-
-  const userPicture = infoUser.picture
-    ? { uri: `${infoUser.picture}` }
-    : require("../images/avatar.png");
-
   return (
     <View style={styles.container}>
       <View style={styles.userContent}>
-        <Image style={styles.userAvatar} source={userPicture} />
-        <Text style={styles.userName}>{infoUser.email}</Text>
+        <Image
+          style={styles.userAvatar}
+          source={require("../images/avatar.png")}
+        />
+        <Text style={styles.userName}>Nguyễn Trung Hải</Text>
         <Image
           style={styles.btnNotification}
           source={require("../images/notifications.png")}
@@ -47,10 +37,7 @@ const Homee = (props) => {
           <Text style={styles.text2}>Báo cáo sự cố</Text>
         </TouchableOpacity>
 
-        <TouchableOpacity
-          style={styles.ITSupport}
-          onPress={goToSendSupportScreen}
-        >
+        <TouchableOpacity style={styles.ITSupport} onPress={goToSendSupportScreen}>
           <Image
             style={styles.imgEdit}
             source={require("../images/global.png")}
@@ -108,8 +95,8 @@ const styles = StyleSheet.create({
     padding: 12,
   },
   btnNotification: {
-    position: 'absolute',
-    left: '95%', 
+    marginStart: 105,
+    marginEnd: 30,
   },
   text1: {
     marginTop: 27,
