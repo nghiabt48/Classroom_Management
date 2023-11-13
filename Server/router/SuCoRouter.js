@@ -5,11 +5,12 @@ const AuthController = require('./../controller/AuthController')
 
 
 router.get('/loai', suCoController.getAllLoaiSuCo)
+router.route('/phong-ban/:phong_tiep_nhan').get(suCoController.locSuCoTheoPhongBan)
 router.use(AuthController.protect)
-router.route('/add')
+router.route('/image-upload')
   .post(suCoController.uploadProblemImage)
   .post(suCoController.saveProblemImageToStorage)
+router.route('/add')
   .post(suCoController.createSuCo)
-router.get('/search', suCoController.getSuCo)
 
 module.exports = router

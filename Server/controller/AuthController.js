@@ -1,6 +1,18 @@
 const AppError = require('../utils/appError')
 const { getUserData } = require('../router/OAuth')
-const GiangVien = require('../model/GiangVienModel')
+const User = require('../model/UserModel')
+
+exports.restrictTo = (...roles) => {
+  return (req, res, next) => {
+    // roles ['admin']. role='user'
+    if (!roles.includes(req.user.auth_role)) {
+      return next(
+        new AppError('Role khong hop le', 403)
+      );
+    }
+    next();
+  };
+};
 exports.protect = async function (req, res, next) {
   try {
     // Get token
@@ -20,10 +32,10 @@ exports.protect = async function (req, res, next) {
     let currentUser
     // 3) Check if token is valid
     if (user_decoded) {
-      currentUser = await GiangVien.findOne({ email: user_decoded.email });
+      currentUser = await User.findOne({ email: user_decoded.email });
       if (!currentUser) {
         // New user is logging in, so create a new one
-        await GiangVien.create({
+        await User.create({
           email: user_decoded.email,
           name: user_decoded.name,
           picture: user_decoded.picture

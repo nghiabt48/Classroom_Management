@@ -1,13 +1,13 @@
 const mongoose = require('mongoose')
 
 const TaiSanPhongHocSchema = new mongoose.Schema({
-    kiemTraNgay: Date,
-    SoLuongThuc: Number,
-    taiSan: {
+    kiem_tra_ngay: Date,
+    so_luong_thuc: Number,
+    tai_san: {
         type: [mongoose.Types.ObjectId],
         ref: 'TaiSan'
     },
-    phongHoc: {
+    phong_hoc: {
         type: [mongoose.Types.ObjectId],
         ref: 'PhongHoc'
     },

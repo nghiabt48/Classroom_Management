@@ -1,8 +1,8 @@
 const mongoose = require('mongoose')
 
 const CoSoSchema = new mongoose.Schema({
-    tenCoSo: String,
-    diaChi: String
+    ten_co_so: String,
+    dia_chi: String
 
 })
 const CoSo = mongoose.model('CoSo', CoSoSchema)
