@@ -1,4 +1,4 @@
-const User = require("../model/GiangVienModel.js");
+const User = require("../model/UserModel.js");
 const SuCo = require("../model/SuCoModel.js");
 const catchAsync = require("../utils/catchAsync");
 exports.getMe = (req, res, next) => {
@@ -17,9 +17,26 @@ exports.getUser = catchAsync(async (req, res, next) => {
 exports.getMyProblems = catchAsync(async (req, res, next) => {
   res.status(200).json({
     status: "success",
-    su_co: await SuCo.find({ giangVien: req.params.id }).populate(
+    su_co: await SuCo.find({ user: req.params.id }).populate(
       "loaiSuCo",
       "ten phong_tiep_nhan"
     ),
   });
 });
+
+// users/nhan-vien/tiep-nhan/:sucoId
+exports.tiepNhanSuCo = catchAsync(async(req, res, next) => {
+  const suCo = await SuCo.findById(req.params.id)
+  if(suCo.trangThai == "Pending") {
+    await SuCo.findOneAndUpdate(suCo.id, {
+      trangThai: 'Processing',
+      thoi_gian_tiep_nhan: new Date(Date.now() + 7 * 60 * 60 * 1000),
+      nhan_vien_tiep_nhan: req.user.id
+    })
+  }
+  else {
+    return new AppError('Trạng thái của sự cố phải là Pending.', 400)
+  }
+})
+
+

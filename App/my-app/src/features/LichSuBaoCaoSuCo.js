@@ -45,7 +45,7 @@ const LichSuBaoCaoSuCo = (props) => {
         />
         <Text style={{ color: "#FEFEFE",marginLeft: 12,marginTop:15, }}>
           {infoUser.email}
-        </Text>
+          </Text>
         <Image
           source={require("../images/notifications.png")}
           style={{ width: 20, height: 20,marginTop:15, }}

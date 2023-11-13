@@ -1,8 +1,8 @@
 const mongoose = require('mongoose')
 
 const ToaNhaSchema = new mongoose.Schema({
-  tenToa: String,
-  coSo: {
+  ten_toa: String,
+  co_so: {
     type: mongoose.Types.ObjectId,
     ref: 'CoSo'
   }

@@ -20,16 +20,19 @@ const SuCoSchema = new mongoose.Schema({
         default: date.toLocaleString()
     },
     phongHoc: String,
-    giangVien: {
+    user: {
         type: mongoose.Types.ObjectId,
-        ref: 'GiangVien'
+        ref: 'User'
     },
-    thoiGianTiepNhan: Date,
-    thoiGianHoanThanh: Date,
+    thoi_gian_tiep_nhan: Date,
+    thoi_gian_hoan_thanh: Date,
     danh_gia: {
-        phong: String,
         thoi_gian: Date,
         mo_ta: String
+    },
+    nhan_vien_tiep_nhan: {
+        type: mongoose.Types.ObjectId,
+        ref: 'User'
     }
 })
 const SuCo = mongoose.model('SuCo', SuCoSchema)

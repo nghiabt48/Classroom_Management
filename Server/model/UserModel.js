@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 
-const GiangVienSchema = new mongoose.Schema({
+const UserSchema = new mongoose.Schema({
   name: String,
   email: {
     type: String,
@@ -8,7 +8,7 @@ const GiangVienSchema = new mongoose.Schema({
     unique: true
   },
   phone: String,
-  coSo: {
+  co_so: {
     type: mongoose.Types.ObjectId,
     ref: 'CoSo'
   },
@@ -18,7 +18,10 @@ const GiangVienSchema = new mongoose.Schema({
     enum: ['GiangVien', 'NhanVien', 'Manager'],
     default: 'GiangVien'
   },
-  isLogin: Boolean
+  phong_ban: {
+    type: mongoose.Types.ObjectId,
+    ref: 'PhongBan'
+},
 })
-const GiangVien = mongoose.model('GiangVien', GiangVienSchema)
-module.exports = GiangVien
+const User = mongoose.model('User', UserSchema)
+module.exports = User
