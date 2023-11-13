@@ -11,7 +11,8 @@ import LichSuBaoCaoSuCo from "./LichSuBaoCaoSuCo";
 import ProblemReport from "./ProblemReport";
 import SendSupport from "./SendSupport";
 import Setting from "./Setting";
-
+import HomeNhanVien from "../features/NhanVien/HomeNhanVien"
+import { useNavigation } from "@react-navigation/native";
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
 const Users = () => {
@@ -20,7 +21,7 @@ const Users = () => {
       initialRouteName="Login"
       screenOptions={{ headerShown: false }}
     >
-      <Stack.Screen name="Login" component={Logins}  />
+      <Stack.Screen name="Login" component={Logins} />
     </Stack.Navigator>
   );
 };
@@ -73,7 +74,54 @@ const Main = () => {
     </Tab.Navigator>
   );
 };
-
+const Sub = () => {
+  return (
+    <Tab.Navigator
+      initialRouteName="zzzzsd"
+      screenOptions={({ route }) => ({
+        tabBarIcon: ({ focused, color, size }) => {
+          if (route.name === "NhanVien") {
+            return <Image source={require("../images/home.png")} />;
+          } else if (route.name === "LichSuBaoCaoSuCo") {
+            return <Image source={require("../images/history.png")} />;
+          } else if (route.name === "Call") {
+            return <Image source={require("../images/lienhe.png")} />;
+          } else if (route.name === "Setting") {
+            return <Image source={require("../images/caiidat.png")} />;
+          }
+        },
+        tabBarActiveTintColor: "#000000",
+        tabBarInactiveTintColor: "white",
+        tabBarActiveBackgroundColor: "white",
+        tabBarInactiveBackgroundColor: "white",
+        tabBarLabelStyle: {
+          fontWeight: "700",
+        },
+      })}
+    >
+      <Stack.Screen
+        name="NhanVien"
+        component={HomeNhan}
+        options={{ headerShown: false, title: "Trang chủ" }}
+      />
+      <Stack.Screen
+        name="LichSuBaoCaoSuCo"
+        component={Test1}
+        options={{ headerShown: false, title: "Lịch sử" }}
+      />
+      <Tab.Screen
+        name="Call"
+        component={Test1}
+        options={{ headerShown: false, title: "Liên hệ" }}
+      />
+      <Tab.Screen
+        name="Setting"
+        component={Test2}
+        options={{ headerShown: false, title: "Cài đặt" }}
+      />
+    </Tab.Navigator>
+  );
+};
 const HomeGiangVien = () => {
   return (
     <Stack.Navigator
@@ -87,10 +135,30 @@ const HomeGiangVien = () => {
   );
 };
 
-const AppNavigator = () => {
-  const { isLogin, setisLogin } = useContext(AppConText);
+const HomeNhan = () => {
+  return (
+    <Stack.Navigator
+      initialRouteName="NhanVien"
+      screenOptions={{ headerShown: false }}
+    >
+      <Stack.Screen name="HomeNV" component={HomeNhanVien} />
+    </Stack.Navigator>
+  );
+};
 
-  return <>{isLogin === false ? <Users /> : <Main />}</>;
+const AppNavigator = () => {
+  const { isLogin, userRole } = useContext(AppConText);
+  console.log("UserRole:", userRole); 
+  if (!isLogin) {
+    return <Users />;
+  } else {
+    if (userRole === "NhanVien") {
+      return <Sub />;
+    } else {
+      console.log("ffff")
+      return <Main />;
+    }
+  }
 };
 
 export default AppNavigator;
