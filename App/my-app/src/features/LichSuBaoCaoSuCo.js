@@ -23,7 +23,6 @@ const LichSuBaoCaoSuCo = (props) => {
       if (response.status == "success") {
         ToastAndroid.show("Lay du lieu thanh cong", ToastAndroid.SHORT);
         setdata(response.su_co);
-        console.log(response.su_co);
       } else {
         ToastAndroid.show("Lay du lieu that bai", ToastAndroid.SHORT);
         setdata(null);
@@ -33,8 +32,8 @@ const LichSuBaoCaoSuCo = (props) => {
     return () => {};
   }, []);
 
-  const userPicture = infoUser.picture
-  ? { uri: `${infoUser.picture}` }
+  const userPicture = infoUser.photoURL
+  ? { uri: `${infoUser.photoURL}` }
   : require("../images/avatar.png");
 
   return (
@@ -44,12 +43,12 @@ const LichSuBaoCaoSuCo = (props) => {
           source={userPicture}
           style={{ width: 48, height: 48,borderRadius:47 }}
         />
-        <Text style={{ color: "#FEFEFE", paddingLeft: 12 }}>
-          {infoUser.name}
+        <Text style={{ color: "#FEFEFE",marginLeft: 12,marginTop:15, }}>
+          {infoUser.email}
         </Text>
         <Image
           source={require("../images/notifications.png")}
-          style={{ width: 20, height: 20 }}
+          style={{ width: 20, height: 20,marginTop:15, }}
         />
       </View>
 

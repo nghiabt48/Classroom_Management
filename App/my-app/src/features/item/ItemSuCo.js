@@ -14,7 +14,7 @@ const ItemSuCo = (props) => {
       <View style={{ padding: 17 }}>
         <Text style={styles.titsuco}>Sự cố về {data.loaiSuCo.ten}</Text>
         <Text style={{ marginTop: 13, fontSize: 12 }}>
-          Người tiếp nhận: Nguyễn Trung Hải
+          Người tiếp nhận: Chưa có
         </Text>
         <View style={styles.time}>
           <Text style={{ fontSize: 12 }}>{data.created_at}  </Text>

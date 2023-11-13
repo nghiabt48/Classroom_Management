@@ -11,72 +11,11 @@ import { useNavigation } from "@react-navigation/native";
 import Modal from "react-native-modal";
 import "expo-dev-client";
 import { GoogleSignin } from "@react-native-google-signin/google-signin";
-import auth from '@react-native-firebase/auth';
-import AsyncStorage from '@react-native-async-storage/async-storage';
-import AxiosIntance from "../../AxiosIntance";
+
 import { AppConText } from "./AppConText";
-const Logins = (props) => {
-  const [initializing, setInitializing] = useState(true);
-  const [user, setUser] = useState();
-  const { isLogin, setisLogin } = useContext(AppConText);
-  const { infoUser, setinfoUser } = useContext(AppConText);
-  const [isModalVisible, setModalVisible] = useState(false);
-  const navigation = useNavigation();
-  const goToHomeScreen = () => {
-    navigation.navigate("HomeMN");
-  };
-  GoogleSignin.configure({
-    webClientId:'247308758118-accuefi3om4mnb5lbmo1rvuabbhaeq2r.apps.googleusercontent.com',
-  });
 
-  function onAuthStateChanged(user) {
-    setUser(user);  
-    if (initializing) setInitializing(false);
-  }
-
-  useEffect(() => {
-    const subscriber = auth().onAuthStateChanged(onAuthStateChanged);
-    return subscriber; 
-  }, []);
-
-  const signOutGoogle = async () => {
-    try {
-      await GoogleSignin.revokeAccess();
-      await GoogleSignin.signOut();
-    } catch (error) {
-      console.error(error); 
-    }
-  };
-
-  const onGoogleButtonPress = async() => {
-    // Get the users ID token
-    const { idToken } = await GoogleSignin.signIn();
-    console.log(idToken);
-    // Create a Google credential with the token
-    const googleCredential = auth.GoogleAuthProvider.credential(idToken);
-
-    await signOutGoogle();
-  
-    // Sign-in the user with the credential
-    const userSignIn = auth().signInWithCredential(googleCredential);
-    userSignIn.then((user) =>{
-      AsyncStorage.setItem('token', idToken);
-      setinfoUser(user.additionalUserInfo.profile);
-      setisLogin(true);
-    })  
-    .catch((error)=>{
-      console.error(error);
-    })
-  }
-
-  if (initializing) return null;
- 
-
-  //Hiển thị bảng chọn cơ sở
-  const toggleModal = () => {
-    setModalVisible(!isModalVisible);
-  };
-
+const Logins = () => {
+  const { promptAsync} = useContext(AppConText)
   return (
     <View style={styles.container}>
       <View style={styles.container2}>
@@ -85,11 +24,11 @@ const Logins = (props) => {
           source={require("../images/fptlogo.png")}
         />
 
-        <TouchableOpacity style={styles.btnChoose} onPress={toggleModal}>
+        <TouchableOpacity style={styles.btnChoose} >
           <Text style={styles.text1}>Lựa chọn cơ sở</Text>
         </TouchableOpacity>
 
-        <Modal isVisible={isModalVisible} onBackdropPress={toggleModal}>
+        <Modal >
           <View style={styles.modalContainer}>
             <Text style={styles.txtCS}>FPT Polytechnic HO</Text>
             <View style={styles.line}></View>
@@ -105,13 +44,13 @@ const Logins = (props) => {
             <View style={styles.line}></View>
             <Text style={styles.txtCS7}>FPT Polytechnic Hải Phòng</Text>
             <View style={styles.line}></View>
-            <TouchableOpacity style={styles.btnConfirm} onPress={toggleModal}>
+            <TouchableOpacity style={styles.btnConfirm} >
               <Text style={styles.text3}>xác nhận</Text>
             </TouchableOpacity>
           </View>
         </Modal>
 
-        <TouchableOpacity style={styles.btnGoogle} onPress={onGoogleButtonPress}>
+        <TouchableOpacity style={styles.btnGoogle} onPress={() => promptAsync()}>
           <Image source={require("../images/google.png")} />
           <Text style={styles.text2}>Google</Text>
         </TouchableOpacity>

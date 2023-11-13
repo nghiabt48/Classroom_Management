@@ -15,6 +15,7 @@ const giangVienRouter = require('./router/GiangVienRouter')
 const googleAuthRouter = require('./router/GoogleAuthRouter')
 const oAuth = require('./router/OAuth')
 const oAuthRouter = oAuth.router
+const oauth_API = require('./router/Oauth2_API_Router')
 
 var app = express();
 
@@ -38,6 +39,8 @@ app.use('/api/tai-san', taiSanRouter);
 app.use('/api/giang-vien', giangVienRouter);
 app.use('/oauth', oAuthRouter)
 app.use('/request', googleAuthRouter)
+app.use('/api/request', require('./router/GG_Auth_Router_API'))
+app.use('/api/oauth', oauth_API)
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));

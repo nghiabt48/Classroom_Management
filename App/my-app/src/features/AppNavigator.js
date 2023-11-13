@@ -10,6 +10,7 @@ import Homee from "./Homee";
 import LichSuBaoCaoSuCo from "./LichSuBaoCaoSuCo";
 import ProblemReport from "./ProblemReport";
 import SendSupport from "./SendSupport";
+import Setting from "./Setting";
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -19,7 +20,7 @@ const Users = () => {
       initialRouteName="Login"
       screenOptions={{ headerShown: false }}
     >
-      <Stack.Screen name="Login" component={Logins} />
+      <Stack.Screen name="Login" component={Logins}  />
     </Stack.Navigator>
   );
 };
@@ -66,7 +67,7 @@ const Main = () => {
       />
       <Tab.Screen
         name="Setting"
-        component={Test2}
+        component={Setting}
         options={{ headerShown: false, title: "Cài đặt" }}
       />
     </Tab.Navigator>
