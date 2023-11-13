@@ -11,7 +11,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { useNavigation } from "@react-navigation/native";
 import Modal from "react-native-modal";
 import AxiosIntance from "../../AxiosIntance";
-
+import * as ImagePicker from 'expo-image-picker';
 const ProblemReport = () => {
   const [isModalVisible, setModalVisible] = useState(false);
   const [isModalPhongVisible, setisModalPhongVisible] = useState(false)
@@ -20,6 +20,7 @@ const ProblemReport = () => {
   const [currentPhongChoosing, setcurrentPhongChoosing] = useState("")
   const [dataPhong, setdataPhong] = useState([])
   const [moTa, setmoTa] = useState("")
+  const [selectedImage, setSelectedImage] = useState(null);
   useEffect(() => {
     const getListLoaiSuCo = async () => {
       const response = await AxiosIntance().get("/su-co/loai?phong_tiep_nhan=ky_thuat");
@@ -62,7 +63,8 @@ const ProblemReport = () => {
     const response = await AxiosIntance().post("/su-co/add", {
       loaiSuCo: currentChoosing,
       moTa,
-      phongHoc: currentPhongChoosing
+      phongHoc: currentPhongChoosing,
+      hinhAnh: selectedImage,
     });
       if (response.status == "success") {
         ToastAndroid.show("Your report has been sent!", ToastAndroid.SHORT);
@@ -75,7 +77,39 @@ const ProblemReport = () => {
     setcurrentChoosing("")
     setcurrentPhongChoosing("")
     setmoTa(null)
+    setSelectedImage(null)
   }
+
+  const pickImage = async () => {
+    let result = await ImagePicker.launchImageLibraryAsync({
+      mediaTypes: ImagePicker.MediaTypeOptions.Images,
+      allowsEditing: true,
+      aspect: [4, 3],
+      quality: 1,
+    });
+  
+    //form data để upload file
+    const formData = new FormData();
+    formData.append("hinhAnh", {
+      uri: result.assets[0].uri,
+      type: "image/jpeg",
+      name: "image.jpg",
+    }); 
+    //chạy api  
+    const respone = await AxiosIntance("multipart/form-data").post(
+      "/su-co/image-upload",
+      formData
+    );
+    if (!result.canceled) {
+      if (respone.status === "success") {
+        ToastAndroid.show("Update Image Successfully", ToastAndroid.SHORT);
+        setSelectedImage(respone.path)
+        console.log(respone.path);
+      } else {
+        ToastAndroid.show("Update Image Failed", ToastAndroid.SHORT);
+      }
+    }
+  };
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.container2}>
@@ -142,11 +176,14 @@ const ProblemReport = () => {
       <View style={{ flexDirection: "row", marginTop: 24 }}>
         <TouchableOpacity style={styles.btnCamera}>
           <Image source={require("../images/camera.png")} />
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.btnImage}>
+        </TouchableOpacity> 
+        <TouchableOpacity style={styles.btnImage} onPress={pickImage}>
           <Image source={require("../images/image.png")} />
         </TouchableOpacity>
       </View>
+      {selectedImage && (
+        <Image source={{ uri: selectedImage }} style={{ width: 200, height: 200,alignSelf:"center"}} />
+      )}
       <TouchableOpacity style={styles.btnSend} onPress={sendReport}>
         <Text style={styles.text2}>Gửi yêu cầu</Text>
       </TouchableOpacity>
