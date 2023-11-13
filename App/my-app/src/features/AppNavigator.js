@@ -10,7 +10,6 @@ import Homee from "./Homee";
 import LichSuBaoCaoSuCo from "./LichSuBaoCaoSuCo";
 import ProblemReport from "./ProblemReport";
 import SendSupport from "./SendSupport";
-import Setting from "./Setting";
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -67,7 +66,7 @@ const Main = () => {
       />
       <Tab.Screen
         name="Setting"
-        component={Setting}
+        component={Test2}
         options={{ headerShown: false, title: "Cài đặt" }}
       />
     </Tab.Navigator>
