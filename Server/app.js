@@ -13,6 +13,7 @@ const suKienRouter = require('./router/SuKienRouter');
 const taiSanRouter = require('./router/TaiSanRouter');
 const giangVienRouter = require('./router/GiangVienRouter')
 const googleAuthRouter = require('./router/GoogleAuthRouter')
+const thongBaoRouter = require('./router/ThongBaoRouter')
 const oAuth = require('./router/OAuth')
 const oAuthRouter = oAuth.router
 const oauth_API = require('./router/Oauth2_API_Router')
@@ -37,6 +38,7 @@ app.use('/api/toa-nha', toaNhaRouter);
 app.use('/api/su-kien', suKienRouter);
 app.use('/api/tai-san', taiSanRouter);
 app.use('/api/giang-vien', giangVienRouter);
+app.use('/api/thong-bao', thongBaoRouter);
 app.use('/oauth', oAuthRouter)
 app.use('/request', googleAuthRouter)
 app.use('/api/request', require('./router/GG_Auth_Router_API'))

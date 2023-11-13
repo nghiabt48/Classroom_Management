@@ -1,14 +1,11 @@
 const mongoose = require('mongoose')
+const { datetongbao } = require('../controller/ThongBaoControler')
 
 const ThongBaoSchema = new mongoose.Schema({
-    thoiGian: String,
+    thoiGian: Date,
     title: String,
     noiDung: String,
-    manager: {
-        type: [mongoose.Types.ObjectId],
-        ref: 'Manager'
-    }
-    
+    nguoiDang: String,  
 })
 const ThongBao = mongoose.model('ThongBao', ThongBaoSchema)
 module.exports = ThongBao
