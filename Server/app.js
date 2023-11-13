@@ -12,6 +12,8 @@ const toaNhaRouter = require('./router/ToaNhaRouter');
 const suKienRouter = require('./router/SuKienRouter');
 const taiSanRouter = require('./router/TaiSanRouter');
 const userRouter = require('./router/UserRouter')
+const thongBaoRouter = require('./router/ThongBaoRouter')
+
 
 var app = express();
 
@@ -33,6 +35,7 @@ app.use('/api/toa-nha', toaNhaRouter);
 app.use('/api/su-kien', suKienRouter);
 app.use('/api/tai-san', taiSanRouter);
 app.use('/api/users', userRouter);
+app.use('/api/thong-bao', thongBaoRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
