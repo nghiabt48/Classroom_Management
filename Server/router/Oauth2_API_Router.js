@@ -14,7 +14,7 @@ async function getUserData(id_token) {
   const client = new OAuth2Client()
   const ticket = await client.verifyIdToken({
       idToken: id_token,
-      audience: [process.env.CLIENT_ID1, process.env.CLIENT_ID2]
+      audience: process.env.CLIENT_ID1
   });
   const payload = ticket.getPayload();
   const userid = payload['sub'];
@@ -28,19 +28,19 @@ async function getUserData(id_token) {
 router.get('/', async function(req, res, next) {
   const code = req.query.code
   try{
-    const redirectURL = 'http://127.0.0.1:3000/oauth'
+    const redirectURL = 'http://127.0.0.1:3000/api/oauth'
     const oAuth2Client = new OAuth2Client(process.env.CLIENT_ID1, process.env.CLIENT_SECRET1, redirectURL)
     const response = await oAuth2Client.getToken(code)
     await oAuth2Client.setCredentials(response.tokens)
     const user = oAuth2Client.credentials
     const userData = await getUserData(user.id_token)
-    const user_check = await GiangVien.findOne({email: userData.email})
-    if(!user_check) await GiangVien.create(userData)
-    res.status(200).json({
-      status: 'success',
-      token: user.id_token
-    })
-  } 
+    const user_check = await GiangVien.findOneAndUpdate({email: userData.email}, {$set: { isLogin: true}})
+    if(!user_check) {
+      await GiangVien.create(userData)
+      await GiangVien.findOneAndUpdate({email: userData.email}, {$set: { isLogin: true}})
+    }
+    
+  }
   catch(err) {
     res.status(400).json({
       status: 'failed',
@@ -48,4 +48,4 @@ router.get('/', async function(req, res, next) {
     })
   }
 })
-module.exports = {router, getUserData}
+module.exports = router

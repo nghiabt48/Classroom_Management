@@ -19,7 +19,7 @@ const Users = () => {
       initialRouteName="Login"
       screenOptions={{ headerShown: false }}
     >
-      <Stack.Screen name="Login" component={Logins} />
+      <Stack.Screen name="Login" component={Logins}  />
     </Stack.Navigator>
   );
 };

@@ -23,7 +23,6 @@ const LichSuBaoCaoSuCo = (props) => {
       if (response.status == "success") {
         ToastAndroid.show("Lay du lieu thanh cong", ToastAndroid.SHORT);
         setdata(response.su_co);
-        console.log(response.su_co);
       } else {
         ToastAndroid.show("Lay du lieu that bai", ToastAndroid.SHORT);
         setdata(null);
@@ -33,8 +32,8 @@ const LichSuBaoCaoSuCo = (props) => {
     return () => {};
   }, []);
 
-  const userPicture = infoUser.picture
-  ? { uri: `${infoUser.picture}` }
+  const userPicture = infoUser.photoURL
+  ? { uri: `${infoUser.photoURL}` }
   : require("../images/avatar.png");
 
   return (

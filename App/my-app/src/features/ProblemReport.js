@@ -25,7 +25,6 @@ const ProblemReport = () => {
       const response = await AxiosIntance().get("/su-co/loai?phong_tiep_nhan=ky_thuat");
       if (response.status == "success") {
         setloaiSuCo(response.data);
-           console.log(response.data)
       } else {
         ToastAndroid.show("Lay du lieu that bai", ToastAndroid.SHORT);
         setloaiSuCo(null)

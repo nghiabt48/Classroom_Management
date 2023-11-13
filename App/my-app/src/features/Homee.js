@@ -19,8 +19,8 @@ const Homee = (props) => {
     navigation.navigate("Send_Support");
   };
 
-  const userPicture = infoUser.picture
-    ? { uri: `${infoUser.picture}` }
+  const userPicture = infoUser.photoURL
+    ? { uri: `${infoUser.photoURL}` }
     : require("../images/avatar.png");
 
   return (

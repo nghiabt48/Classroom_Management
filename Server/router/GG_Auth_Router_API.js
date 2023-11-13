@@ -9,7 +9,7 @@ router.post('/', async (req, res, next) => {
   res.header("Access-Control-Allow-Credentials", 'true');
   res.header('Referrer-Policy', 'no-referrer-when-downgrade')
 
-  const redirectURL = 'http://127.0.0.1:3000/oauth'
+  const redirectURL = 'http://127.0.0.1:3000/api/oauth'
   const oAuth2Client = new OAuth2Client(process.env.CLIENT_ID1, process.env.CLIENT_SECRET1, redirectURL)
   const authorizeURL = oAuth2Client.generateAuthUrl({
     access_type: 'offline',

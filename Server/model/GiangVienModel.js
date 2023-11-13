@@ -18,6 +18,7 @@ const GiangVienSchema = new mongoose.Schema({
     enum: ['GiangVien', 'NhanVien', 'Manager'],
     default: 'GiangVien'
   },
+  isLogin: Boolean
 })
 const GiangVien = mongoose.model('GiangVien', GiangVienSchema)
 module.exports = GiangVien

@@ -1,7 +1,6 @@
 {
   "cli": {
-    "version": ">= 5.4.0",
-    "requireCommit": true
+    "version": ">= 5.6.0"
   },
   "build": {
     "development": {
@@ -11,11 +10,7 @@
     "preview": {
       "distribution": "internal"
     },
-    "production": {
-      "env": {
-        "EXPO_PUBLIC_API_URL": "http://192.168.2.6:8081"
-      }
-    }
+    "production": {}
   },
   "submit": {
     "production": {}

@@ -2,9 +2,6 @@
   "expo": {
     "name": "my-app",
     "slug": "my-app",
-    "plugins": [
-      "@react-native-google-signin/google-signin"
-    ],
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -21,21 +18,30 @@
       "supportsTablet": true
     },
     "android": {
-      "googleServicesFile": "./google-services.json",
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "package": "com.vihao.myapp"
+      "package": "com.wibubatdiet.myapp"
     },
     "web": {
       "favicon": "./assets/favicon.png"
     },
     "extra": {
       "eas": {
-        "projectId": "38c10437-a943-4501-8f1f-0b85b0d237b8"
+        "projectId": "68f8ba40-2788-43a0-a210-53eddcf7e870"
       }
     },
-    "owner": "asdadasd"
+    "plugins": [
+      "@react-native-google-signin/google-signin",
+      [
+        "expo-image-picker",
+        {
+          "photosPermission": "The app accesses your photos to let you share them with your friends."
+        }
+      ]
+    ],
+    "scheme": "com.wibubatdiet.myapp",
+    "owner": "wibubatdiet"
   }
 }

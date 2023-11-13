@@ -1,4 +1,4 @@
-package com.vihao.myapp;
+package com.wibubatdiet.myapp;
 
 import android.os.Build;
 import android.os.Bundle;

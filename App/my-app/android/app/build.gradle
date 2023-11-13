@@ -81,9 +81,9 @@ android {
 
     compileSdkVersion rootProject.ext.compileSdkVersion
 
-    namespace 'com.vihao.myapp'
+    namespace 'com.wibubatdiet.myapp'
     defaultConfig {
-        applicationId 'com.vihao.myapp'
+        applicationId 'com.wibubatdiet.myapp'
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
@@ -178,5 +178,3 @@ dependencies {
 
 apply from: new File(["node", "--print", "require.resolve('@react-native-community/cli-platform-android/package.json')"].execute(null, rootDir).text.trim(), "../native_modules.gradle");
 applyNativeModulesAppBuildGradle(project)
-
-apply plugin: 'com.google.gms.google-services'
