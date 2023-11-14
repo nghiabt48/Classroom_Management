@@ -14,6 +14,8 @@ const taiSanRouter = require('./router/TaiSanRouter');
 const userRouter = require('./router/UserRouter')
 const thongBaoRouter = require('./router/ThongBaoRouter')
 
+const globalErrorHandler = require('./controller/errorController');
+const AppError = require('./utils/appError');
 
 var app = express();
 
@@ -38,19 +40,12 @@ app.use('/api/users', userRouter);
 app.use('/api/thong-bao', thongBaoRouter);
 
 // catch 404 and forward to error handler
-app.use(function(req, res, next) {
-  next(createError(404));
+app.all('*', (req, res, next) => {
+  next(new AppError(`Can't find ${req.originalUrl} on this server!`, 404));
 });
+
 
 // error handler
-app.use(function(err, req, res, next) {
-  // set locals, only providing error in development
-  res.locals.message = err.message;
-  res.locals.error = err;
-
-  // render the error page
-  res.status(500);
-  res.render('error');
-});
+app.use(globalErrorHandler);
 
 module.exports = app;

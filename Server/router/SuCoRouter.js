@@ -5,6 +5,7 @@ const AuthController = require('./../controller/AuthController')
 
 
 router.get('/loai', suCoController.getAllLoaiSuCo)
+router.get('/', suCoController.getAllSuCo)
 router.route('/phong-ban/:phong_tiep_nhan').get(suCoController.locSuCoTheoPhongBan)
 router.use(AuthController.protect)
 router.route('/image-upload')

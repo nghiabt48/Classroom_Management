@@ -28,12 +28,24 @@ const SuCoSchema = new mongoose.Schema({
     thoi_gian_hoan_thanh: Date,
     danh_gia: {
         thoi_gian: Date,
-        mo_ta: String
+        mo_ta: String,
+        rating: {
+            type: Number,
+            min: 1,
+            max: 5
+        }
     },
     nhan_vien_tiep_nhan: {
         type: mongoose.Types.ObjectId,
         ref: 'User'
     }
 })
+SuCoSchema.pre(/^find/, function(next) {
+    this.populate({
+      path: 'loaiSuCo',
+      select: 'ten phong_tiep_nhan'
+    })
+    next()
+  })
 const SuCo = mongoose.model('SuCo', SuCoSchema)
 module.exports = SuCo
