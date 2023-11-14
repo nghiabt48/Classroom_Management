@@ -16,7 +16,7 @@ exports.getTang = async (req, res, next) => {
 }
 exports.getTangTheoToaNha = async (req, res, next) => {
     try {
-        const data = await Tang.find({ toaNha: req.params.id });
+        const data = await Tang.find({ toa_nha: req.params.id });
         res.status(500).json({
             status: 'success',
             data
@@ -29,10 +29,10 @@ exports.getTangTheoToaNha = async (req, res, next) => {
 }
 exports.addTang = async (req, res, next) => {
     try {
-        const Toa = await ToaNha.findOne({ tenToa: req.body.toaNha })
+        const Toa = await ToaNha.findOne({ ten_toa: req.body.toaNha })
         const data = await Tang.create({
-            tenTang: req.body.tenTang,
-            toaNha: Toa._id
+            ten_tang: req.body.ten_tang,
+            toa_nha: Toa._id
         })
         res.status(500).json({
             status: 'success',

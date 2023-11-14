@@ -16,8 +16,8 @@ exports.getToaNha = async (req, res, next) => {
 }
 exports.getToaNhaTheoCoSo = async (req, res, next) => {
     try {
-        const data = await ToaNha.find({ coSo: req.params.id });
-        res.status(500).json({
+        const data = await ToaNha.find({ co_so: req.params.id });
+        res.status(200).json({
             status: 'success',
             data
         })
@@ -29,10 +29,11 @@ exports.getToaNhaTheoCoSo = async (req, res, next) => {
 }
 exports.addToaNha = async (req, res, next) => {
     try {
-        const co_So = await CoSo.findOne({ tenCoSo: req.body.coSo })
+        const co_So = await CoSo.findOne({ _id: req.body.co_so })
+        console.log(co_So)
         const data = await ToaNha.create({
-            tenToa: req.body.tenToa,
-            coSo: co_So._id
+            ten_toa: req.body.ten_toa,
+            co_so: co_So._id
         })
         res.status(500).json({
             status: 'success',
