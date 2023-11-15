@@ -5,12 +5,12 @@ exports.getAll = async (req, res, next) => {
     try {
         const data = await ThongBao.find();
         res.status(500).json({
-            status: 'true',
+            status: 'success',
             data
         })
     } catch (error) {
         res.status(500).json({
-            status: 'false'
+            status: 'failed'
         })
     }
 }
@@ -65,7 +65,20 @@ exports.deleteThongbao = async (req, res, next) => {
         })
     } catch (error) {
         res.status(500).json({
-            status: 'success'
+            status: 'failed'
+        })
+    }
+}
+exports.getCT = async (req, res, next) => {
+    try {
+        const data = await ThongBao.findOne({ _id: req.params.id });
+        res.status(500).json({
+            status: 'success',
+            data
+        })
+    } catch (error) {
+        res.status(500).json({
+            status: 'failed'
         })
     }
 }

@@ -19,7 +19,7 @@ const LichSuBaoCaoSuCo = (props) => {
   const { infoUser, setinfoUser } = useContext(AppConText);
   useEffect(() => {
     const getMyProblems = async () => {
-      const response = await AxiosIntance().get("/giang-vien/me/problems");
+      const response = await AxiosIntance().get("/users/me/problems");
       if (response.status == "success") {
         ToastAndroid.show("Lay du lieu thanh cong", ToastAndroid.SHORT);
         setdata(response.su_co);

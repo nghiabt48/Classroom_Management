@@ -12,7 +12,10 @@ import ProblemReport from "./ProblemReport";
 import SendSupport from "./SendSupport";
 import Setting from "./Setting";
 import HomeNhanVien from "../features/NhanVien/HomeNhanVien"
+import HomeManager from "../features/Manager/HomeManager"
+import ListNhanSu from "../features/Manager/ListNhanSu"
 import { useNavigation } from "@react-navigation/native";
+import ListSuCo from "./NhanVien/ListSuCo";
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
 const Users = () => {
@@ -142,20 +145,19 @@ const HomeNhan = () => {
       screenOptions={{ headerShown: false }}
     >
       <Stack.Screen name="HomeNV" component={HomeNhanVien} />
+      <Stack.Screen name="ListSC" component={ListSuCo} />
     </Stack.Navigator>
   );
 };
 
 const AppNavigator = () => {
   const { isLogin, userRole } = useContext(AppConText);
-  console.log("UserRole:", userRole); 
   if (!isLogin) {
     return <Users />;
   } else {
     if (userRole === "NhanVien") {
       return <Sub />;
     } else {
-      console.log("ffff")
       return <Main />;
     }
   }
