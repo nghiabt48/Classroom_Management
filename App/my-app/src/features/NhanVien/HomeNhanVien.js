@@ -2,6 +2,12 @@ import { StyleSheet, Text, View, Image, TouchableOpacity } from "react-native";
 import React from "react";
 import { useNavigation } from "@react-navigation/native";
 const HomeNhanVien   = () => {
+  const navigation = useNavigation();
+
+    const goToLISTSC = () => {
+      navigation.navigate("ListSC");
+    };
+
   return (
     <View style={styles.container}>
       <View style={styles.userContent}>
@@ -20,6 +26,7 @@ const HomeNhanVien   = () => {
 
         <TouchableOpacity
           style={styles.problemReport}
+          onPress={goToLISTSC}
         >
           <Image
             style={styles.imgEdit}
