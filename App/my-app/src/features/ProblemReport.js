@@ -102,11 +102,11 @@ const ProblemReport = () => {
     );
     if (!result.canceled) {
       if (respone.status === "success") {
-        ToastAndroid.show("Update Image Successfully", ToastAndroid.SHORT);
+        ToastAndroid.show("Successfully", ToastAndroid.SHORT);
         setSelectedImage(respone.path)
         console.log(respone.path);
       } else {
-        ToastAndroid.show("Update Image Failed", ToastAndroid.SHORT);
+        ToastAndroid.show("Failed", ToastAndroid.SHORT);
       }
     }
   };

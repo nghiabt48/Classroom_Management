@@ -24,10 +24,11 @@ export const AppConTextProvider = (props) => {
             const responsee = await AxiosIntance().get("/users/me");
             if (responsee.status === "success") {
                 if(responsee.user.auth_role === "NhanVien"){
-                    console.log("nv")
                     setUserRole("NhanVien");
+                    setTimeout(() => {
+                        
+                    }, 5000);
                 }else{
-                    console.log("gv")
                     setUserRole("GiangVien");
                 }
               
@@ -41,6 +42,7 @@ export const AppConTextProvider = (props) => {
     React.useEffect(() => {
         if (response?.type == "success") {
             const { id_token } = response.params
+            console.log(id_token)
             const credential = GoogleAuthProvider.credential(id_token)
             signInWithCredential(auth, credential)
             AsyncStorage.setItem('token', id_token)
