@@ -45,3 +45,16 @@ exports.deleteSuKien = async (req, res, next) => {
         })
     }
 }
+exports.getCTSuKien = async (req, res, next) => {
+    try {
+        const data = await SuKien.find({_id: req.params.id});
+        res.status(500).json({
+            status: 'success',
+            data
+        })
+    } catch (error) {
+        res.status(500).json({
+            status: 'failed'
+        })
+    }
+}
